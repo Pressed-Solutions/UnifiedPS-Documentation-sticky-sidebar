@@ -30,7 +30,7 @@ defined( 'ABSPATH' ) or die( 'No access allowed' );
  * @link http://leafo.net/sticky-kit/ Source code from leafo.net
  */
 function unifiedps_documentation_assets() {
-    wp_register_script( 'sticky-kit', plugin_dir_url( __FILE__ ) . '/jquery.sticky-kit.min.js', array( 'jquery' ), '1.1.2' );
+    wp_register_script( 'sticky-kit', plugin_dir_url( __FILE__ ) . 'jquery.sticky-kit.min.js', array( 'jquery', 'doc_js' ), '1.1.2' );
     wp_add_inline_script( 'sticky-kit', '
         (function($){
             $(document).ready(function(){
