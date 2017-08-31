@@ -31,6 +31,14 @@ defined( 'ABSPATH' ) or die( 'No access allowed' );
  */
 function unifiedps_documentation_assets() {
     wp_register_script( 'sticky-kit', plugin_dir_url( __FILE__ ) . 'jquery.sticky-kit.min.js', array( 'jquery', 'doc_js' ), '1.1.2' );
+}
+add_action( 'wp_enqueue_scripts', 'unifiedps_documentation_assets' );
+
+/**
+ * Enqueue the inline script on demand
+ */
+function unifiedps_documentation_sticky_sidebar_shortcode() {
+    wp_enqueue_script( 'sticky-kit' );
     wp_add_inline_script( 'sticky-kit', '
         (function($){
             $(document).ready(function(){
@@ -39,14 +47,6 @@ function unifiedps_documentation_assets() {
                 });
             });
         })(jQuery);
-        ' );
-}
-add_action( 'wp_enqueue_scripts', 'unifiedps_documentation_assets' );
-
-/**
- * Enqueue the script on demand
- */
-function unifiedps_documentation_sticky_sidebar_shortcode() {
-    wp_enqueue_script( 'sticky-kit' );
+    ' );
 }
 add_shortcode( 'unifiedps_documentation_sticky_sidebar', 'unifiedps_documentation_sticky_sidebar_shortcode' );
